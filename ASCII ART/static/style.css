@@ -1,0 +1,63 @@
+/* Body styling with background image and font settings */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url('/static/background.png'); /* Correct path to background image */
+    background-size: cover;
+    background-position: inherit;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Header styling with text shadow */
+h1 {
+    color: #f5f5f5;
+    text-shadow: 2px 2px 5px #000;
+}
+
+/* Textarea styling for ASCII art output */
+textarea {
+    width: 70%;
+    height: 8rem;
+    font-family: monospace;
+    font-size: 1rem;
+    position: fixed; /* Position relative to the viewport */
+    bottom: 2cm;     /* Move 1 cm above the bottom */
+    left: 50%;       /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    white-space: pre-wrap; /* Preserve formatting of ASCII art */
+}
+
+
+
+/* Input, select, and button styling */
+input, select, button {
+    padding: 10px;
+    font-size: 1rem;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e2d9d9;
+    color: #b93939;
+    cursor: pointer;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #555;
+}
+
+/* Responsive design: Make the page mobile-friendly */
+@media (max-width: 768px) {
+    textarea {
+        width: 100%;
+    }
+    input, select, button {
+        width: 90%;
+    }
+}

@@ -1,0 +1,71 @@
+=<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ASCII Art Generator</title>
+    <!-- Use Flask's url_for to generate the correct path for favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='logo_ascii_art.png') }}" type="logo_ascii_art.pngpng">
+    <!-- Linking the stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1 style="color white"> <i>ASCII Art Generator</i></h1>
+    <p>Type your text, choose a font, and a color to generate colorful ASCII art!</p>
+
+    <!-- Input fields for text, font, and color selection -->
+    <input type="text" id="inputText" placeholder="Enter your text" />
+    <select id="fontSelect">
+        <option value="slant">Slant</option>
+        <option value="standard">Standard</option>
+        <option value="3-d">3-D</option>
+        <option value="banner">Banner</option>
+        <option value="block">Block</option>
+    </select>
+    <select id="colorSelect">
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="yellow">Yellow</option>
+        <option value="purple">Purple</option>
+        <option value="cyan">Cyan</option>
+        <option value="white">White</option>
+    </select>
+    <button onclick="generateArt()">Generate ASCII Art</button>
+
+    <!-- Textarea to display ASCII art output -->
+    <textarea id="asciiOutput" readonly></textarea>
+
+    <script>
+        // JavaScript function to generate ASCII art based on user input
+        async function generateArt() {
+            const text = document.getElementById('inputText').value;
+            const font = document.getElementById('fontSelect').value;
+            const color = document.getElementById('colorSelect').value;
+
+            if (!text.trim()) {
+                alert("Please enter some text!");
+                return;
+            }
+
+            // Send a POST request to the backend
+            const response = await fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: text, font: font, color: color })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                document.getElementById('asciiOutput').value = result.ascii_art;
+                document.getElementById('asciiOutput').style.color = color; // Apply the selected color
+            } else {
+                alert(result.error || "Something went wrong!");
+            }
+        }
+    </script>
+</body>
+</html>

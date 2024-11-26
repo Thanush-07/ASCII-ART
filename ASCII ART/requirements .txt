@@ -1,0 +1,13 @@
+These   LIBRARIES  ARE REQUIED  FOR   following  ASCII  ART  PROJECT 
+
+
+pip  install Flask==2.2.2
+pip install pyfiglet==0.8.post1
+
+
+
+
+       
+
+
+
